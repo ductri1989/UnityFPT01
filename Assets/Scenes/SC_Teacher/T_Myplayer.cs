@@ -33,7 +33,7 @@ public class T_Myplayer : MonoBehaviour{
         Vector2 moveVector = new Vector2(horizontal, vertical);
         GetComponent<Animator>().SetFloat("Moving", moveVector.magnitude);//magnitude : lấy độ dài của vector
 
-        //transform.Translate(horizontal * turningSpeed * Time.deltaTime, 0, vertical * movementSpeed * Time.deltaTime);//Di chuyển nhân vật
+        rb.velocity+=new Vector3(horizontal * turningSpeed * Time.deltaTime, 0, vertical * movementSpeed * Time.deltaTime);//Di chuyển nhân vật
         
 
 
