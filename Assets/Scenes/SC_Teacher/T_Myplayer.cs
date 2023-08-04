@@ -33,14 +33,13 @@ public class T_Myplayer : MonoBehaviour{
         Vector2 moveVector = new Vector2(horizontal, vertical);
         GetComponent<Animator>().SetFloat("Moving", moveVector.magnitude);//magnitude : lấy độ dài của vector
 
-        rb.velocity+=new Vector3(horizontal * turningSpeed * Time.deltaTime, 0, vertical * movementSpeed * Time.deltaTime);//Di chuyển nhân vật
-        
-
-
-
+        if(rb.velocity.x<300 && rb.velocity.z < 300)
+            rb.AddForce(horizontal * movementSpeed * Time.deltaTime, 0, vertical * movementSpeed * Time.deltaTime);//Di chuyển nhân vật
 
         if (Input.GetMouseButtonDown(0))
-            GetComponent<Animator>().Play("Attacking");
+            GetComponent<Animator>().Play("DrawArrow");
 
+        if (Input.GetMouseButtonUp(0))
+            GetComponent<Animator>().Play("Recoil");
     }
 }
