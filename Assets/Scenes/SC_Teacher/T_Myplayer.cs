@@ -4,11 +4,14 @@ using UnityEngine;
 
 public class T_Myplayer : MonoBehaviour{
     [SerializeField] Transform camPlayer;
+    [SerializeField] Transform beginArrow;
     [SerializeField] float jump;
     [SerializeField] float turningSpeed;
     [SerializeField] float movementSpeed;
     [SerializeField] bool isControlPlayer;
-    
+    [SerializeField] GameObject arrow;
+
+
     private bool canJump;
     private Rigidbody rb;
     void Start()
@@ -41,6 +44,8 @@ public class T_Myplayer : MonoBehaviour{
         if (Input.GetMouseButtonUp(0) && DateTimeUtil.currentUtcTimeMilliseconds-lastTimeAttack>1000){
             GetComponent<Animator>().Play("Recoil");
             lastTimeAttack = DateTimeUtil.currentUtcTimeMilliseconds;
+
+            Instantiate(arrow, beginArrow.position, Camera.main.transform.rotation);
         }
 
 
