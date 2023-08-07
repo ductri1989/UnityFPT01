@@ -13,6 +13,7 @@ public class T_Myplayer : MonoBehaviour{
     private Rigidbody rb;
     void Start()
     {
+        lastTimeAttack = 0;
         isControlPlayer = true;
         rb = GetComponent<Rigidbody>();
     }
@@ -25,6 +26,8 @@ public class T_Myplayer : MonoBehaviour{
         canJump = false;
     }
 
+
+    private long lastTimeAttack;
     void Update(){
         if (isControlPlayer == false)
             return;
@@ -32,11 +35,14 @@ public class T_Myplayer : MonoBehaviour{
         if (Input.GetKeyDown(KeyCode.Space) && canJump)
             rb.AddForce(Vector3.up * jump);
 
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) && DateTimeUtil.currentUtcTimeMilliseconds-lastTimeAttack>1000)
             GetComponent<Animator>().Play("DrawArrow");
 
-        if (Input.GetMouseButtonUp(0))
+        if (Input.GetMouseButtonUp(0) && DateTimeUtil.currentUtcTimeMilliseconds-lastTimeAttack>1000){
             GetComponent<Animator>().Play("Recoil");
+            lastTimeAttack = DateTimeUtil.currentUtcTimeMilliseconds;
+        }
+
 
         float horizontal = Input.GetAxis("Horizontal");
         float vertical = Input.GetAxis("Vertical");
