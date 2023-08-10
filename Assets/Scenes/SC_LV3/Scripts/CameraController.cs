@@ -15,6 +15,14 @@ public class CameraController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.position = playerCam.position;
+
+    }
+
+    void RotateCamera()
+    {
+        float camHorizontal = Input.GetAxis("MouseY");
+        float camVertical = Input.GetAxis("MouseX");
+
+
     }
 }
