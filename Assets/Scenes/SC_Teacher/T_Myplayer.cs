@@ -77,7 +77,12 @@ public class T_Myplayer : MonoBehaviour{
         Camera.main.transform.position = camPlayer.position;
         Camera.main.transform.localEulerAngles = new Vector3(Camera.main.transform.localEulerAngles.x, transform.localEulerAngles.y, 0);//Xoay Y của Camera
         Camera.main.transform.Rotate(-camVertical, 0, 0);//Xoay X của camera
+        StartCoroutine(DestroyArrow());
     }
 
-
+    IEnumerator DestroyArrow()
+    {
+        yield return new WaitForSeconds(3);
+        Destroy(this.arrow);
+    }
 }
